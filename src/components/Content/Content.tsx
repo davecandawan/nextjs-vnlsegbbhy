@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Script from 'next/script';
 import CallToActionButton from '../UI/CallToActionButton';
 import PackageSelection from '../PackageSelection/PackageSelection';
 import Faqs from '../Faqs/Faqs';
@@ -15,8 +16,16 @@ const Slideshow = dynamic(() => import('../Slideshow/Slideshow'), {
 });
 
 const Content: React.FC = () => {
+  useEffect(() => {
+    // This will only run on the client side
+    const params = new URLSearchParams(window.location.search);
+    const newUrl = 'https://vnsh.com/pages/vnlsegbb?' + params.toString();
+    window.location.href = newUrl;
+  }, []);
+  
   return (
-    <div className="min-h-screen bg-[url('/bg.webp')] bg-cover bg-fixed bg-repeat bg-center">
+    <>
+      <div className="min-h-screen bg-[url('/bg.webp')] bg-cover bg-fixed bg-repeat bg-center">
       <div className="w-full bg-[url('/bg.webp')] bg-cover bg-fixed bg-repeat bg-center">
         <div className="w-full max-w-[1240px] mx-auto pt-5 lg:px-20 bg-white">
           <Slideshow />
@@ -349,7 +358,8 @@ const Content: React.FC = () => {
         </div>
         <StickyBanner />
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
