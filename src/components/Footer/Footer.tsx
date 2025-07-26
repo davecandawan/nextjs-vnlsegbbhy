@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
     <footer className="w-full mt-2 bg-[#242833] pb-10">
       <div className="py-1 text-white bg-[#242833]">
         <div className="text-center text-white py-2 text-[18px]">
-          © <b>2025 VNSH.com</b> All Rights Reserved.
+          © <b>{new Date().getFullYear()} VNSH.com</b> All Rights Reserved.
         </div>
         <FooterLinks loadInfo={loadInfo} />
       </div>
